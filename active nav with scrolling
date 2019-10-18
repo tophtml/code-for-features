@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script><title>Untitled - 1</title> <style>
+    body{ padding: 90px 0 0 0;}
+
+    .div{border: 4px solid #000;height: 700px;width: 1000px;margin: 20px auto;}
+    #menu{  background-color: #000;width: 100%;  position: fixed; height: 80px;  border: 1px solid #000;   top: 0;    color: #fff; }
+    #menu td{  float: left;   border: 1px solid #fff; height: 30px;  width: 200px;xt-align: center; }
+    #menu table{   margin: 0 auto;  list-style: none;   }
+    .stick_r{   background: #000;  }
+    .active{  background: red;  }
+    #footer{ height: 500px; width: 100%; background: green; }    </style>
+    <script>
+jQuery(function ($) {
+
+    $(window).scroll(function(){
+
+        $(".div").each(function () {
+
+          var window_top = $(window).scrollTop();
+
+          var div_top = $(this).offset().top;
+
+          var div_1 = $(this).attr('id');
+
+            if (window_top > div_top - 120){
+
+                $('#menu').find('td').removeClass('active');
+
+                $('#menu').find('td[class="'+div_1+'"]').addClass('active');
+
+            }
+
+            else{
+
+                $('#menu').find('td[class="'+div_1+'"]').removeClass('active');
+
+                };
+
+        });
+
+    });
+
+});
+
+</script>
+</head>
+<body>
+<div id="menu">
+<table>
+<tr>
+    <td class="1_div active">1111</td>
+    <td class="2_div">2222</td>
+    <td class="3_div">3333</td>
+    <td class="4_div">4444</td>
+</tr>
+</table>
+</div>
+<div id="1_div" class="div">1</div>
+<div id="2_div" class="div">2</div>
+<div id="3_div" class="div">3</div>
+<div id="4_div" class="div">4</div>
+<div id="footer"></div>
+</body>
+</html>
