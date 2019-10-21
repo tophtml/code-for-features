@@ -66,25 +66,22 @@ $("#eyescript").mask("~9.99 ~9.99 999");
 
 
 
-РАБОТАЕТ УРА
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
   <script>
-     function RegEx(regex, input, helpText, helpMessage) {
+     function RegEx(regex, input, helpText) {
         if (!regex.test(input)) {
-            helpText.innerHTML = helpMessage;
+            helpText.innerHTML = "Please enter a tel (for example, 066-555-75-55).";
           return false;        }
         else {
-            helpText.innerHTML = "";
+            helpText.innerHTML = "РАБОТАЕТ УРА";
           return true;        }
       }         
       function validateTel(inputField, helpText) {
-        return RegEx(/^\d{3}-\d{3}-\d{2}-\d{2}$/,
-          inputField.value, helpText,
-          "Please enter a tel (for example, 066-555-75-55).");
+        return RegEx(/^\d{3}-\d{3}-\d{2}-\d{2}$/,inputField.value, helpText);
       }
   </script>
 </head>
@@ -95,7 +92,6 @@ $("#eyescript").mask("~9.99 ~9.99 999");
   </form>
 </body>
 </html>
-
 
 
 
