@@ -60,3 +60,48 @@ $("#eyescript").mask("~9.99 ~9.99 999");
 <input id="date" type="text" />
 
 Маска для формы готова! Надеюсь, этот урок был для вас полезен!
+
+
+
+
+
+
+РАБОТАЕТ УРА
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+     function RegEx(regex, input, helpText, helpMessage) {
+        if (!regex.test(input)) {
+            helpText.innerHTML = helpMessage;
+          return false;        }
+        else {
+            helpText.innerHTML = "";
+          return true;        }
+      }         
+      function validateTel(inputField, helpText) {
+        return RegEx(/^\d{3}-\d{3}-\d{2}-\d{2}$/,
+          inputField.value, helpText,
+          "Please enter a tel (for example, 066-555-75-55).");
+      }
+  </script>
+</head>
+<body>
+  <form>
+    <input type="tel" id="tel" name="" placeholder="put your phone" onblur="validateTel(this, document.getElementById('help-tel'))">
+    <span id="help-tel"></span>
+  </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
