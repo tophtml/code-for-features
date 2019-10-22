@@ -98,47 +98,45 @@ $("#eyescript").mask("~9.99 ~9.99 999");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<script>
-		function RegEx(regex,input,helpText) {
-			if (!regex.test(input)) {
-				if (helpText != null)
-				helpText.innerHTML = "Put correct digits";
-				return false;
-			}
-			else {
-				if (helpText != null)
-				helpText.innerHTML = "";
-				return true;
-			}
-		}
-		 function validateNonEmpty(inputField, helpText) {
-        return RegEx(/.+/,
-          inputField.value, helpText,"Please enter a value.");
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script>
+    function RegEx(regex,input,helpText, helpMessage) {
+      if (!regex.test(input)) {
+        if (helpText != null)
+        helpText.innerHTML = helpMessage;
+        return false;
+      }
+      else {
+        if (helpText != null)
+        helpText.innerHTML = "";
+        return true;
+      }
+    }
+     function validateNonEmpty(inputField, helpText) {
+        return RegEx(/.+/,inputField.value, helpText,"Please enter a value.");
       }
 
-		function showHelp(inputField, helpText) {
-			return RegEx(/^\+38\d{3}-\d{3}-\d{2}-\d{2,4}$/, inputField.value, helpText);
-		}
+    function showHelp(inputField, helpText) {
+      return RegEx(/^\+38\d{3}-\d{3}-\d{2}-\d{2,4}$/, inputField.value, helpText, "Put tel as +38044-111-11-11");
+    }
 
-		function sendMyForm(form) {
+    function sendMyForm(form) {
         if (showHelp(form["tel"], form["help-text"]) &&  validateNonEmpty(form["name"], form["name_help"])) {
           form.submit();         
         } else {
           alert("I'm sorry but there is something wrong with the order information.");
         }
       }
-	</script>
+  </script>
 </head>
 <body>
-	<form action="practice.html" method="POST">
-		<input id="tel" type="tel" name="tel" onblur="showHelp(this, document.getElementById('help-text'))" placeholder="Put your phone">
-		<span id="help-text"></span>
-		<input type="text" name="text" id="name" onblur="validateNonEmpty(this, document.getElementById('name_help'))">
-		<span id="name_help"></span>
-		<input type="button" value="Send form" onclick="sendMyForm(this.form)">
-		<div id="form-text"></div>
-	</form>	
+  <form action="index.html" method="POST">
+    <input id="tel" type="tel" name="tel" onblur="showHelp(this, document.getElementById('help-text'))" placeholder="Put your phone">
+    <span id="help-text"></span>
+    <input type="text" name="text" id="name" onblur="validateNonEmpty(this, document.getElementById('name_help'))">
+    <span id="name_help"></span>
+    <input type="button" value="Send form" onclick="sendMyForm(this.form)">
+  </form> 
 </body>
 </html>
