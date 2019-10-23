@@ -140,3 +140,11 @@ $("#eyescript").mask("~9.99 ~9.99 999");
   </form> 
 </body>
 </html>
+
+
+INPUT FILE 
+<input type="file" id="file" class="inputfile" onchange='uploadFile(this)'>
+function uploadFile(target) {
+    document.getElementById("file-name").innerHTML = target.files[0].name;
+}
+
