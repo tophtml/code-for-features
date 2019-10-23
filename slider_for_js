@@ -170,3 +170,71 @@ function showSlides(n) {
 </div>
 </body>
 </html>
+
+
+
+MY OWN SLIDER FOR BIKES (images: bike0, bike1.....)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+
+        let image = 0;
+      let message = "";
+      function changeScene(choice) {
+        switch(image) {
+          case 0:
+           if (choice == 2) {
+            image = 1;
+            message = "1";
+          }
+          else {
+            image = 0;
+            
+          }
+            break;
+          case 1:
+          if (choice == 2) {
+            image = 2;
+            message = "2";
+          }
+          else {
+            image = 0;
+            message = "0";
+          }
+          break;
+
+		case 2:
+          if (choice == 2) {
+            image = 3;
+            message = "3";
+          }
+          else {
+            image = 1;
+            message = "1";
+          }
+          break;
+
+          case 3:
+          if (choice == 1) {
+            image = 2;
+            message = "2";
+          }
+          break;
+        }
+
+      document.getElementById('bike').src = 'bike' + image + ".jpg";
+      document.getElementById('scenetext').innerHTML = message;
+      }
+</script>
+<body>
+	<img id="bike" src="bike0.jpg">
+	<div id="scenetext"></div>
+	<button onclick="changeScene(1)">left</button>
+	<button onclick="changeScene(2)">right</button>
+</body>
+</html>
+
