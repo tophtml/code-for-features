@@ -238,3 +238,78 @@ MY OWN SLIDER FOR BIKES (images: bike0, bike1.....)
 </body>
 </html>
 
+
+СЛАЙДЕР ИЗ ТРЕХ КАРТИНОК!!!!(https://www.youtube.com/watch?v=casgv9Y8I1w&list=PLM7wFzahDYnFjBTkfRTRlusyp_tlZ9rYz&index=31)
+Ширина картинки 87px
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#slider {
+			width: 261px;
+			height: 128px;
+			border: 3px solid black;
+			margin: 50px auto;
+			overflow: hidden;
+		}
+		#polosa {
+			width: 896px;
+			position: relative;
+			left: 0;
+			transition:  all ease 1s;
+		}
+
+		#polosa img {
+			float: left;
+		}
+		#polosa::after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+	</style>
+</head>
+<script type="text/javascript">
+	let left = 0;
+
+	function sliderleft() {
+		let polosa = document.getElementById('polosa');
+		left = left - 87;
+		if (left<-345) {
+			left = -345;
+		}
+		polosa.style.left = left + 'px';
+	}
+
+	
+	function sliderright() {
+		let polosa = document.getElementById('polosa');
+		left = left + 87;
+		if (left>0) {
+			left = 0;
+		}
+		polosa.style.left = left + 'px';
+	}
+
+</script>
+<body>
+	<div id="slider">
+		<div id="polosa">
+			<img src="seat_avail.png">
+			<img src="seat_select.png">
+			<img src="seat_unavail.png">
+			<img src="seat_avail.png">
+			<img src="seat_unavail.png">
+			<img src="seat_avail.png">
+			<img src="seat_unavail.png">
+		</div>
+		
+	</div>
+<button id="sliderright" onclick="sliderright()">Click me right</button>	
+<button id="sliderleft" onclick="sliderleft()">Click me</button>
+	
+</body>
+</html>
+
