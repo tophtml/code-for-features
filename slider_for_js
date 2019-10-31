@@ -356,22 +356,19 @@ SLIDER WITH A TIMER
 		}
 	</style>
 	<script type="text/javascript">
-		autoSlider();
 		let left = 0;
-		
-		function autoSlider (){
-			setTimeout(function (){
-				document.querySelector('.slider-box');
+		autoSlider();
+
+		function autoSlider() {
+			setTimeout(function () {
 				left = left-128;
 			if (left<-512) {
 				left = 0;
-				
 			}
 			document.querySelector('.slider-box').style.left = left + 'px';
-			autoSlider ();
-	}, 1000);
+			autoSlider();
+			},3000);
 		}
-
 	</script>
 </head>
 <body>
@@ -400,8 +397,6 @@ SLIDER WITH A TIMER
 			</div>
 		</div>
 	</div>
-	<button id="slider-left" onclick="sliderleft()">Click me</button>
 </body>
 </html>
-
 
