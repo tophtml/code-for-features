@@ -34,7 +34,6 @@
     font-size: 18px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
-
 }
 .slider .next {
     right: 0;
@@ -326,6 +325,83 @@ MY OWN SLIDER FOR BIKES (images: bike0, bike1.....)
 	</div>
 <button style="color: red;" id="sliderright" onclick="sliderright()">Click me right</button>	
 <button id="sliderleft" onclick="sliderleft()">Click me left</button>
-	
 </body>
 </html>
+
+
+SLIDER WITH A TIMER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		button {
+			display: block;
+			margin: 0 auto;
+		}
+		.slider {
+			width: 384px;
+			margin: 50px auto;
+			overflow: hidden;
+		}
+		.slider-box {
+			position: relative;
+			display: inline-flex;
+			left: 0;
+			transition: all ease 1s;
+		}
+		.slider__img {
+			width: 128px;
+		}
+	</style>
+	<script type="text/javascript">
+		autoSlider();
+		let left = 0;
+		
+		function autoSlider (){
+			setTimeout(function (){
+				document.querySelector('.slider-box');
+				left = left-128;
+			if (left<-512) {
+				left = 0;
+				
+			}
+			document.querySelector('.slider-box').style.left = left + 'px';
+			autoSlider ();
+	}, 1000);
+		}
+
+	</script>
+</head>
+<body>
+	<div class="slider">
+		<div class="slider-box">
+			<div class="slider__img">
+				<img src="1.png">
+			</div>
+			<div class="slider__img">
+				<img src="2.png">
+			</div>
+			<div class="slider__img">
+				<img src="3.png">
+			</div>
+			<div class="slider__img">
+				<img src="4.png">
+			</div>
+			<div class="slider__img">
+				<img src="5.png">
+			</div>
+			<div class="slider__img">
+				<img src="6.png">
+			</div>
+			<div class="slider__img">
+				<img src="7.png">
+			</div>
+		</div>
+	</div>
+	<button id="slider-left" onclick="sliderleft()">Click me</button>
+</body>
+</html>
+
+
