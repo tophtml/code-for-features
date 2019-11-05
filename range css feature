@@ -136,7 +136,7 @@ position: relative; top: 0; left: -100px;
 			
 		</div>
 	</div>
-	<input style="width: 300px; display: block;" id="range" type="range" name="img" min="0" max="400" step="1">
+	<input style="width: 300px; display: block;" id="range" type="range" name="img" min="0" max="400" step="1" value="200">
 	<div id="test"></div>
 
 <script defer>
@@ -144,7 +144,7 @@ position: relative; top: 0; left: -100px;
 		
 		function stop() {
 			let div = document.getElementById('slider-wrap');
-			div.style.left = this.value + 'px';
+			div.style.right = this.value + 'px';
 			// div.style.borderRadius = this.value + 'px';
 		}
 	</script>
