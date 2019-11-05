@@ -8,3 +8,5 @@ https://itproger.com/practice/javascript
 
 https://ru.hexlet.io/professions/frontend
 https://ru.code-basics.com/languages/javascript
+
+Кантор Илья. JavaScript. 
