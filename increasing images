@@ -44,3 +44,33 @@
 	</script>
 </body>
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul class="shit">
+		<li class="button">1</li>
+		<li class="button2">2</li>
+	</ul>
+	<ul>
+		<li>gdfgdf</li>
+		<li>sdasdas</li>
+	</ul>
+</body>
+<script>
+	document.querySelector('.button').onclick = shit;
+	document.querySelector('.button2').onclick = shit;
+		function shit() {
+		alert('dsf');
+		let blocks = document.querySelectorAll('.shit>li');
+
+		for( let i = 0; i < blocks.length; i++){ // проходим циклом по всем элементам объекта
+	    blocks[i].style.color = "red"; // устанавливаем красный цвет текста каждому элементу
+	  }		
+	}
+</script>
+</html>
