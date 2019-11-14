@@ -400,3 +400,192 @@ SLIDER WITH A TIMER
 </body>
 </html>
 
+
+SLIDER VANILLA JS with touch event
+
+<!DOCTYPE html>
+            <html lang="en">
+                <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<style>
+
+
+html { box-sizing: border-box; }
+*, ::before, ::after { box-sizing: inherit; }
+html, body { margin: 0; padding: 0; }
+body { font-family: sans-serif; }
+h1 {
+    margin:  0 0 15px;
+    padding: 0;
+    font-size: 2rem;
+}
+img { max-width: 100%; }
+button {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    font: inherit;
+}
+
+//---
+
+.de-carousel {
+    overflow: hidden;
+}
+    .de-carousel__cont {
+        --numSlides: 1;
+
+        margin:  0;
+        padding: 0;
+        display: flex;
+        width: calc(var(--numSlides) * 100%);
+        transform: translate(calc(var(--translateX, 0px) + var(--direction, 0) / var(--numSlides) * -100%));
+        list-style-type: none;
+}
+      .de-carousel__cont.smooth { transition: transform 0.5s ease; 
+    }
+
+   .de-carousel__slide {
+        width: 100%;
+        user-select: none;
+        pointer-events: none;
+	}
+        .de-carousel__slideimg { 
+        	width: 100%; 
+         }
+
+  
+</style>
+</head>
+<body>
+<div class="de-carousel js-carousel">
+    <ul class='de-carousel__cont'>
+        <li class="de-carousel__slide">
+            <img src='https://images.unsplash.com/photo-1504193902866-27cfb5aafcc8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80' alt="Image">
+        </li>
+        <li class="de-carousel__slide">
+            <img src='https://images.unsplash.com/7/sunset-hair.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80' alt="Image">
+        </li>
+        <li class="de-carousel__slide">
+            <img src='https://images.unsplash.com/photo-1517800249805-f3d51bd0b07f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1332&q=80' alt="Image">
+        </li>
+    </ul>
+    <div class="de-carousel__buttons">
+        <button type="button" class="de-carousel__button de-carousel__button--prev">Prev</button>
+        <button type="button" class="de-carousel__button de-carousel__button--next">Next</button>
+        <div class="de-carousel__dots">
+            <button type="button" class="de-carousel__dot">1</button>
+            <button type="button" class="de-carousel__dot">2</button>
+            <button type="button" class="de-carousel__dot">3</button>
+        </div>
+    </div>
+</div>
+<script>
+class DeCarousel {
+    constructor(element, options = {}) {
+        this.element = element
+        this.cont = this.element.querySelector('.de-carousel__cont')
+        this.buttonPrev = this.element.querySelector('.de-carousel__button--prev')
+        this.buttonNext = this.element.querySelector('.de-carousel__button--next')
+        this.dots = [...this.element.querySelectorAll('.de-carousel__dot')]
+        this.numSlides = this.cont.children.length
+
+        this.currentSlideNum = 0
+        this.mousePos = null
+        this.locked = false
+
+        this.options = {
+            ...{},
+            ...options
+        }
+
+        this.init()
+    }
+
+    init() {
+        this.cont.style.setProperty('--numSlides', this.numSlides)
+
+        this.addEvents()
+    }
+
+    unify(e) {
+        return e.changedTouches ? e.changedTouches[0] : e
+    }
+
+    lock(e) {
+        this.mousePos = this.unify(e).clientX
+        this.cont.classList.toggle('smooth', !(this.locked = true))
+    }
+
+    drag(e) {
+        e.preventDefault()
+
+        if (this.locked) {
+            this.cont.style.setProperty('--translateX', `${Math.round(this.unify(e).clientX - this.mousePos)}px`)
+        }
+    }
+
+    move(e) {
+        if (this.locked) {
+            this.swipe(0, e)
+        }
+    }
+
+    swipeTrigger(direction) {
+        this.swipe(direction)
+    }
+
+    swipe(directionToGo, e) {
+        const amountMoved = directionToGo === 0 ? this.unify(e).clientX - this.mousePos : directionToGo
+        const direction = Math.sign(amountMoved)
+
+        if ((this.currentSlideNum > 0 || direction < 0) && (this.currentSlideNum < this.numSlides - 1 || direction > 0)) {
+            this.cont.style.setProperty('--direction', this.currentSlideNum -= direction)
+        }
+
+        this.cont.style.setProperty('--translateX', '0px')
+        this.cont.classList.toggle('smooth', !(this.locked = false))
+        this.mousePos = null
+    }
+
+    goTo(goToSlide) {
+        this.cont.style.setProperty('--direction', this.currentSlideNum = goToSlide)
+
+        this.cont.style.setProperty('--translateX', '0px')
+        this.cont.classList.toggle('smooth', !(this.locked = false))
+        this.mousePos = null
+    }
+
+    addEvents() {
+        this.cont.addEventListener('mousedown', this.lock.bind(this))
+        this.cont.addEventListener('touchstart', this.lock.bind(this))
+
+        this.cont.addEventListener('mousemove', this.drag.bind(this))
+        this.cont.addEventListener('touchmove', this.drag.bind(this))
+
+        this.cont.addEventListener('mouseup', this.move.bind(this))
+        this.cont.addEventListener('touchend', this.move.bind(this))
+
+        if (this.buttonPrev) {
+            this.buttonPrev.addEventListener('click', this.swipeTrigger.bind(this, 1))
+        }
+        if (this.buttonNext) {
+            this.buttonNext.addEventListener('click', this.swipeTrigger.bind(this, -1))
+        }
+
+        if (this.dots.length) {
+            for (let [i, dot] of this.dots.entries()) {
+                dot.addEventListener('click', this.goTo.bind(this, i))
+            }
+        }
+    }
+}
+
+window.Carousel = new DeCarousel(document.querySelector('.js-carousel'))
+</script>
+
+</body>
+</html>
