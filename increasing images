@@ -74,3 +74,27 @@
 	}
 </script>
 </html>
+
+
+ОТРАБОТКА МАССИВОВ
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" name="" class="text" onblur="d()">
+	<img src="1.png" id="img2">
+	<button onclick="ab()">Click</button>
+<script>
+let img2 = document.getElementById('img2');
+let imgArr = 	[img2.src = '1.png', img2.src = '2.png', 
+			img2.src = '3.png', img2.src = '4.png'];
+function ab() {
+	img2.src = imgArr[1];
+	}
+function d() {
+let text = document.querySelector('.text');	
+	img2.src = imgArr[2];
+}
