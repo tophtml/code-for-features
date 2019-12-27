@@ -1,0 +1,12 @@
+//Shadow with setInterval (native JS)
+let ball = {
+	btn: document.querySelector('button'),
+	showShadow() {
+		return ball.btn.classList.add('shadow');
+	},
+};
+function repeatShadow() {
+	setTimeout(ball.showShadow,500);
+	ball.btn.classList.remove('shadow');
+}
+setInterval(repeatShadow, 2000);.shadow {animation: showShadow 1s;}	@keyframes showShadow {		0% {box-shadow: 0 0 1px 1px #fff;}30% {	box-shadow: 0 0 15px 15px #fff;}90% {	box-shadow: 0 0 0 0 #fff;}}
