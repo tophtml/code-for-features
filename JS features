@@ -1,11 +1,11 @@
 //Shadow with setInterval (native JS)
-let ball = {
+function repeatShadow() {
+	let ball = {
 	btn: document.querySelector('button'),
 	showShadow() {
 		return ball.btn.classList.add('shadow');
 	},
 };
-function repeatShadow() {
 	setTimeout(ball.showShadow,500);
 	ball.btn.classList.remove('shadow');
 }
