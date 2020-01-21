@@ -11,4 +11,6 @@ http://kharchuk.ru/JavaScript.pdf книга с носорогом
 https://ru.hexlet.io/professions/frontend
 https://ru.code-basics.com/languages/javascript
 
-Кантор Илья. JavaScript. 
+closeModal.onclick = () => overlay.style.display = 'none';
+overlay.onclick = () => overlay.style.display = 'none';
+modal.onclick = (e) => event.stopPropagation();
