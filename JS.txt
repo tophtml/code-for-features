@@ -14,3 +14,14 @@ https://ru.code-basics.com/languages/javascript
 closeModal.onclick = () => overlay.style.display = 'none';
 overlay.onclick = () => overlay.style.display = 'none';
 modal.onclick = (e) => event.stopPropagation();
+
+btnOpen.addEventListener('click', function() {
+		if ( menu.classList.contains('show-menu') ) {
+			menu.classList.remove('show-menu');
+			menu.classList.add('hide-menu');
+		}
+		else {
+			menu.classList.remove('hide-menu');
+			menu.classList.add('show-menu');
+		}
+	});
