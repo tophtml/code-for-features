@@ -25,3 +25,28 @@ btnOpen.addEventListener('click', function() {
 			menu.classList.add('show-menu');
 		}
 	});
+	
+function chooseItem() {
+			let select = document.querySelector('.select-head');
+			let selectList = document.querySelector('.select-body');
+			let selectItem = document.querySelectorAll('.select-item');
+			select.onclick = toggleList;
+
+			function toggleList() {
+				selectList.classList.toggle('list-active');
+			}	
+
+			for (let i = 0; selectItem.length > i; i++) {
+				selectItem[i].onclick = function() {
+					toggleList();
+					select.innerText = this.innerText;
+				} 
+			}
+			// selectItem.forEach( (item) => {
+			// 	item.onclick = function () {
+			// 		toggleList();
+			// 		select.innerText = item.innerText;
+			// 	} 
+			// });
+	}
+		chooseItem();
